@@ -22,8 +22,15 @@ with open('Food Ingredients and Recipe Dataset with Image Name Mapping.csv', enc
 
 # print(list(data.values())[:10])
 
+'''
+
+generate a realistic cake with low photo quality (regular photo quality) low definition unprofessional homemade
+
+'''
+
 if __name__ == '__main__':
     suscakes = [row for row in data if 'cake' in row['title'].lower()]
     cakes = [recipe for recipe in suscakes if not any(bad in recipe['title'].lower() for bad in ['cupcake', 'pancake'])] 
     print(len(cakes))
     print([cake['title'] for cake in cakes])
+    print(cakes[0])
