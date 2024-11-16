@@ -8,13 +8,26 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
-imagedata = client.images.generate(
-  model="dall-e-3",
-  prompt="I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS:" + "A cute baby sea otter",
-)
+def get_generated_image_url(prompt):
+    imagedata = client.images.generate(
+        model="dall-e-3",
+        prompt=prompt,
+    )
+    dump = imagedata.model_dump()
+    return dump['data'][0]['url']
 
-dump = imagedata.model_dump()
-print(dump)
+def get_text_response(prompt):
+    completion = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant to a customer in a bakery with estimating costs, generating recipes, etc"},
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ]
+    )
+    return completion.choices[0].message.content
 
 
 def view_image(url):
@@ -29,4 +42,4 @@ def view_image(url):
     image.show()
 
 
-view_image(dump['data'][0]['url'])
+# view_image(dump['data'][0]['url'])
