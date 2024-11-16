@@ -35,13 +35,13 @@ async def get_home():
 @app.get('/cake_image')
 async def get_cake_image(size: str, flavor: str, frosting: str, filling: str, decoration: str, gender: str):
     prompt = [
-        f'Please generate an image of a {size} cake with {flavor} flavor, {frosting} frosting, {filling} filling, and {decoration} decoration. This is a for a {gender}. Homemade, realisitic, and with homely lighting.'
+        f'Please generate an image of a {size} cake with {flavor} flavor, {frosting} frosting, {filling} filling, and {decoration} decoration. This is a for a {gender}. Homemade, realisitic, and with homely lighting. generate a very realistic photo HOMEMADE CAKE HOMEMADE HOMEMADE with low photo quality (regular photo quality) low definition unprofessional homemade'
         # f'Cake size: {size}, Cake flavor: {flavor}, cake frosting: {frosting}, cake filling: {filling}',
         # f'Cake decoration: {decoration}, keep in mind this cake is being made for a {gender}'
     ]
     return {
         'url': get_generated_image_url('\n'.join(prompt)),
-        'price': '$1000',
+        'price': get_text_response(f'Please estimate the price of this cake: {size} cake with {flavor} flavor, {frosting} frosting, {filling} filling, and {decoration} decoration. This is a for a {gender}. Homemade, realisitic, and with homely lighting. Say ONLY the dolalr price, such "$100" if that is the price of the cake'),
     }
 
 
