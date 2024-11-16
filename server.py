@@ -54,6 +54,7 @@ async def get_cake_recipe(size: str, flavor: str, frosting: str, filling: str, d
     ]
     return {
         'recipe': get_text_response('\n'.join(prompt)),
+        'price': get_text_response('Please estimate the cost of the ingredients for this cake recipe.'),
     }
 
 if __name__ == '__main__':
