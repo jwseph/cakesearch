@@ -35,9 +35,9 @@ async def get_home():
 @app.get('/cake_image')
 async def get_cake_image(size: str, flavor: str, frosting: str, filling: str, decoration: str, gender: str):
     prompt = [
-        'I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS:',
-        f'Cake size: {size}, Cake flavor: {flavor}, cake frosting: {frosting}, cake filling: {filling}',
-        f'Cake decoration: {decoration}, keep in mind this cake is being made for a {gender}'
+        f'Please generate an image of a {size} cake with {flavor} flavor, {frosting} frosting, {filling} filling, and {decoration} decoration. This is a for a {gender}. Homemade, realisitic, and with homely lighting.'
+        # f'Cake size: {size}, Cake flavor: {flavor}, cake frosting: {frosting}, cake filling: {filling}',
+        # f'Cake decoration: {decoration}, keep in mind this cake is being made for a {gender}'
     ]
     return {
         'url': get_generated_image_url('\n'.join(prompt)),
